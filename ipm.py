@@ -1,7 +1,12 @@
 import os
+import argparse
 import subprocess
 
-with open("ip.txt") as file:
+parser = argparse.ArgumentParser()
+parser.add_argument("-f", "--file")
+args = parser.parse_args()
+
+with open(args.file) as file:
     park = file.read()
     park = park.splitlines()
     for ip in park:
