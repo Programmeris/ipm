@@ -15,5 +15,7 @@ with open(args.file) as file:
         result=subprocess.Popen(["ping", ip], stdout=file, stderr=file).wait()
         if result:
                 print(ip, "inactive")
+                requests.post(send_url, json={'chat_id': args.chat_id, 'text': '{ip} available!'})
         else:
                 print(ip, "active")
+                requests.post(send_url, json={'chat_id': args.chat_id, 'text': '{ip} active!'})
