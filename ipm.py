@@ -4,6 +4,8 @@ import subprocess
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--file")
+parser.add_argument("-t", "--bot-token")
+parser.add_argument("-i", "--chat-id")
 args = parser.parse_args()
 
 with open(args.file) as file:
