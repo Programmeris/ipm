@@ -1,6 +1,5 @@
 import os
 import argparse
-import subprocess
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--file")
@@ -12,7 +11,7 @@ with open(args.file) as file:
     park = file.read()
     park = park.splitlines()
     for ip in park:
-        result=subprocess.Popen(["ping", ip], stdout=file, stderr=file).wait()
+        result=os.system("ping -c 1 " + ip)
         if result:
                 print(ip, "inactive")
                 requests.post(send_url, json={'chat_id': args.chat_id, 'text': '{ip} available!'})
