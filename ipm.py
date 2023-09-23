@@ -1,5 +1,6 @@
 import os
 import argparse
+import requests
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--file")
