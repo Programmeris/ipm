@@ -8,6 +8,8 @@ parser.add_argument("-t", "--bot-token")
 parser.add_argument("-i", "--chat-id")
 args = parser.parse_args()
 
+send_url = 'https://api.telegram.org/bot{args.bot_token}/sendMessage'
+
 with open(args.file) as file:
     park = file.read()
     park = park.splitlines()
