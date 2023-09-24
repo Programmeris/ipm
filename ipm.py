@@ -10,7 +10,7 @@ parser.add_argument("-i", "--chat-id", required=True)
 args = parser.parse_args()
 
 send_url = 'https://api.telegram.org/bot{token}/sendMessage'.format(token=args.bot_token)
-not_available_ip_list = ""
+not_available_ip_list = "\U0001F525 FIRIRNG \n"
 
 if not os.path.exists(args.file):
         print('{file} must be exist. Please fix it and try again'.format(file=args.file))
@@ -23,7 +23,7 @@ with open(args.file) as file:
         result=os.system("ping -c 1 " + ip)
         if result:
                 print(ip, "inactive")
-                not_available_ip_list += "\U0000274C {ip} not available!\n".format(ip=ip)
+                not_available_ip_list += "{ip} not available!\n".format(ip=ip)
         else:
                 print(ip, "active")
 #                requests.post(send_url, json={'chat_id': args.chat_id, 'text': '\U00002705 {ip} is available!'.format(ip=ip)})
