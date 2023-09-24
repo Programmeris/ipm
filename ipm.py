@@ -4,9 +4,9 @@ import requests
 
 parser = argparse.ArgumentParser()
 parser.description = "Simple Python script for monitoring IP available and send it to Telegram Bot"
-parser.add_argument("-f", "--file")
-parser.add_argument("-t", "--bot-token")
-parser.add_argument("-i", "--chat-id")
+parser.add_argument("-f", "--file", required=True)
+parser.add_argument("-t", "--bot-token", required=True)
+parser.add_argument("-i", "--chat-id", required=True)
 args = parser.parse_args()
 
 send_url = 'https://api.telegram.org/bot{token}/sendMessage'.format(token=args.bot_token)
