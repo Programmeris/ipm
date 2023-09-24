@@ -23,6 +23,8 @@ with open(args.file) as file:
                 print(ip, "active")
 #                requests.post(send_url, json={'chat_id': args.chat_id, 'text': '\U00002705 {ip} is available!'.format(ip=ip)})
 
-requests.post(send_url, json={'chat_id': args.chat_id, 'text': not_available_ip_list})
+status = requests.post(send_url, json={'chat_id': args.chat_id, 'text': not_available_ip_list})
+
+print("request to telegram status: {status}".format(status=status))
 
 print(not_available_ip_list)
