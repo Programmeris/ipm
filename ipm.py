@@ -17,7 +17,7 @@ with open(args.file) as file:
         result=os.system("ping -c 1 " + ip)
         if result:
                 print(ip, "inactive")
-                requests.post(send_url, json={'chat_id': args.chat_id, 'text': '{ip} not available!'.format(ip=ip)})
+                requests.post(send_url, json={'chat_id': args.chat_id, 'text': '\U0000274C {ip} not available!'.format(ip=ip)})
         else:
                 print(ip, "active")
-                requests.post(send_url, json={'chat_id': args.chat_id, 'text': '{ip} is available!'.format(ip=ip)})
+                requests.post(send_url, json={'chat_id': args.chat_id, 'text': '\U00002705 {ip} is available!'.format(ip=ip)})
