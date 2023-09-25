@@ -30,7 +30,7 @@ with open(args.file) as file:
                 print(ip, "active")
 #                requests.post(send_url, json={'chat_id': args.chat_id, 'text': '\U00002705 {ip} is available!'.format(ip=ip)})
 
-not_available_ip_list += "Not available ip count: {not_available_ip_counter}".format(not_available_ip_counter=not_available_ip_counter)
+not_available_ip_list += "\nNot available ip count: {not_available_ip_counter}".format(not_available_ip_counter=not_available_ip_counter)
 
 status = requests.post(send_url, json={'chat_id': args.chat_id, 'text': not_available_ip_list})
 
