@@ -33,7 +33,7 @@ def main():
                 not_available_ip_counter += 1
 
     not_available_ip_list += f"\nNot available ip count: {not_available_ip_counter}"
-    status = requests.post(send_url, json={'chat_id': args.chat_id, 'text': not_available_ip_list})
+    status = requests.post(send_url, json={'chat_id': args.chat_id, 'text': not_available_ip_list}, timeout=10)
     print(f"request to telegram status: {status}")
     print(not_available_ip_list)
 
