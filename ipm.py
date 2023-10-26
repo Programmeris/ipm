@@ -14,8 +14,8 @@ not_available_ip_list = "\U0001F525 FIRING \n"
 not_available_ip_counter = 0
 
 if not os.path.exists(args.file):
-        print('{file} must be exist. Please fix it and try again'.format(file=args.file))
-        quit()
+    print('{file} must be exist. Please fix it and try again'.format(file=args.file))
+    quit()
 
 with open(args.file) as file:
     park = file.read()
@@ -23,12 +23,12 @@ with open(args.file) as file:
     for ip in park:
         result=os.system("ping -c 1 " + ip)
         if result:
-                print(ip, "inactive")
-                not_available_ip_list += "{ip} not available!\n".format(ip=ip)
-                not_available_ip_counter += 1
+            print(ip, "inactive")
+            not_available_ip_list += "{ip} not available!\n".format(ip=ip)
+            not_available_ip_counter += 1
         else:
-                print(ip, "active")
-#                requests.post(send_url, json={'chat_id': args.chat_id, 'text': '\U00002705 {ip} is available!'.format(ip=ip)})
+            print(ip, "active")
+#           requests.post(send_url, json={'chat_id': args.chat_id, 'text': '\U00002705 {ip} is available!'.format(ip=ip)})
 
 not_available_ip_list += "\nNot available ip count: {not_available_ip_counter}".format(not_available_ip_counter=not_available_ip_counter)
 
