@@ -11,6 +11,6 @@ Supported features:
 
 follow these steps to use this script:
 
-* Clone this repositor
+* Clone this repository
 * Create and configure Telegram Bot
 * Run script with your telegeram bot token and ip list in .txt file
