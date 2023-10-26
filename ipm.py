@@ -1,39 +1,40 @@
+"""Used modules"""
 import os
+import sys
 import argparse
 import requests
 
 def main():
+    """Simple script for check ip avaliable and send result to Telegram Bot."""
     parser = argparse.ArgumentParser()
-    parser.description = "Simple Python script for monitoring IP available and send it to Telegram Bot"
+    parser.description = "Simple Python script for" \
+                         "monitoring IP available and send it to Telegram Bot"
     parser.add_argument("-f", "--file", required=True)
     parser.add_argument("-t", "--bot-token", required=True)
     parser.add_argument("-i", "--chat-id", required=True)
     args = parser.parse_args()
 
-    send_url = 'https://api.telegram.org/bot{token}/sendMessage'.format(token=args.bot_token)
+    send_url = f'https://api.telegram.org/bot{args.bot_token}/sendMessage'
     not_available_ip_list = "\U0001F525 FIRING \n"
     not_available_ip_counter = 0
 
     if not os.path.exists(args.file):
-        print('{file} must be exist. Please fix it and try again'.format(file=args.file))
-        quit()
+        print(f'{args.file} must be exist. Please fix it and try again')
+        sys.exit()
 
-    with open(args.file) as file:
-        park = file.read()
-        park = park.splitlines()
-        for ip in park:
-            result=os.system("ping -c 1 " + ip)
+    with open(args.file, encoding='UTF-8') as file:
+        ip_list = file.read()
+        ip_list = ip_list.splitlines()
+        for verifiable_ip in ip_list:
+            result=os.system("ping -c 1 " + verifiable_ip)
             if result:
-                print(ip, "inactive")
-                not_available_ip_list += "{ip} not available!\n".format(ip=ip)
+                print(verifiable_ip, "inactive")
+                not_available_ip_list += f"{verifiable_ip} not available!\n"
                 not_available_ip_counter += 1
 
-    not_available_ip_list += "\nNot available ip count: {not_available_ip_counter}".format(not_available_ip_counter=not_available_ip_counter)
-
+    not_available_ip_list += f"\nNot available ip count: {not_available_ip_counter}"
     status = requests.post(send_url, json={'chat_id': args.chat_id, 'text': not_available_ip_list})
-
-    print("request to telegram status: {status}".format(status=status))
-
+    print(f"request to telegram status: {status}")
     print(not_available_ip_list)
 
 if __name__ == '__main__':
