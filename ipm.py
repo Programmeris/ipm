@@ -22,6 +22,10 @@ def main():
         print(f'{args.file} must be exist. Please fix it and try again')
         sys.exit()
 
+    if os.stat(args.file).st_size == 0:
+        print(f'{args.file} is empty!')
+        sys.exit()
+
     with open(args.file, encoding='UTF-8') as file:
         ip_list = file.read()
         ip_list = ip_list.splitlines()
